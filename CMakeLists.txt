@@ -15,8 +15,8 @@ install(
     TARGETS mycpplibtest DESTINATION bin
 )
     
-# install(
-#     FILES shapes.h DESTINATION include 
-# )
+install(
+    FILES shapes.h DESTINATION include 
+)
 
 # file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
