@@ -10,10 +10,13 @@ set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
-install(
-    TARGETS mycpplibtest DESTINATION lib
-)
 
 install(
-    FILES shapes.h DESTINATION include 
+    TARGETS mycpplibtest DESTINATION bin
 )
+    
+# install(
+#     FILES shapes.h DESTINATION include 
+# )
+
+# file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
