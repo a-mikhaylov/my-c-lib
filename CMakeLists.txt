@@ -7,7 +7,8 @@ project(mycpplibtest VERSION ${mycpplibtest_VERSION})
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
-add_library(mycpplibtest SHARED shapes_lib1.cpp)
+add_library(mycpplibtest SHARED shapes_lib1.cpp shapes.h)
+add_library(mycpplibtest::mycpplibtest ALIAS mycpplibtest)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
@@ -29,11 +30,8 @@ install(
 	DESTINATION
 		${CMAKE_INSTALL_DATADIR}/mycpplibtest)
 
-install(
-    TARGETS mycpplibtest DESTINATION bin
-)
-    
-install(
-    FILES shapes.h DESTINATION include 
-)
-
+install(TARGETS mycpplibtest EXPORT mycpplibtest-targets ) 
+install(FILES shapes.h       DESTINATION include )
+install(EXPORT mycpplibtest-targets
+	NAMESPACE mycpplibtest::
+	DESTINATION ${CMAKE_INSTALL_DATADIR}/mycpplibtest)
