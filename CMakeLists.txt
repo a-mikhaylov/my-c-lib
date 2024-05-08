@@ -10,10 +10,10 @@ include(GNUInstallDirs)
 add_library(mycpplibtest shapes_lib1.cpp shapes.h)
 add_library(mycpplibtest::mycpplibtest ALIAS mycpplibtest)
 
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
-
+target_compile_features(mycpplibtest PUBLIC cxx_std_17)
+target_include_directories(mycpplibtest
+	PUBLIC
+		$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 configure_package_config_file(cmake/config.cmake.in
 	${CMAKE_CURRENT_BINARY_DIR}/mycpplibtest-config.cmake
@@ -31,7 +31,7 @@ install(
 		${CMAKE_INSTALL_DATADIR}/mycpplibtest)
 
 install(TARGETS mycpplibtest EXPORT mycpplibtest-targets ) 
-install(FILES shapes.h       DESTINATION include )
+install(FILES shapes.h       DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} )
 install(EXPORT mycpplibtest-targets
 	NAMESPACE mycpplibtest::
 	DESTINATION ${CMAKE_INSTALL_DATADIR}/mycpplibtest)
