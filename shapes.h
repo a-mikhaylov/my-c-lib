@@ -1,4 +1,12 @@
 // C++ Interface Class
+
+
+#if !defined(MY_EXPORT)
+#define MY_EXPORT
+#endif
+
+typedef struct Shape* ShapeHandle;
+
 class Shape {
 public:
     virtual double area() const = 0;
@@ -38,3 +46,17 @@ public:
         return 4 * side;
     }
 };
+
+//=======================================================
+
+MY_EXPORT
+ShapeHandle Shape_create_circle(double radius);
+MY_EXPORT
+ShapeHandle Shape_create_square(double side);
+MY_EXPORT
+double Shape_area(ShapeHandle handle);
+MY_EXPORT
+double Shape_perimeter(ShapeHandle handle);
+MY_EXPORT
+void Shape_destroy(ShapeHandle handle);
+

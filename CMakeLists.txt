@@ -2,13 +2,21 @@ cmake_minimum_required(VERSION 3.15)
 
 set(mycpplibtest_VERSION 1.0.0)
 
-project(mycpplibtest VERSION ${mycpplibtest_VERSION})
+project(mycpplibtest 
+	VERSION ${mycpplibtest_VERSION}
+	LANGUAGES CXX)
 
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
-add_library(mycpplibtest shapes_lib1.cpp shapes.h)
+add_library(mycpplibtest shapes.cpp shapes.h)
 add_library(mycpplibtest::mycpplibtest ALIAS mycpplibtest)
+
+if(BUILD_SHARED_LIBS AND WIN32)
+	target_compile_definitions(mycpplibtest
+		PRIVATE "MY_EXPORT=__declspec(dllexport)"
+		INTERFACE "MY_EXPORT=__declspec(dllimport)")
+endif()
 
 target_compile_features(mycpplibtest PUBLIC cxx_std_17)
 target_include_directories(mycpplibtest
