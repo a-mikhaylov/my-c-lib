@@ -7,7 +7,7 @@ project(mycpplibtest VERSION ${mycpplibtest_VERSION})
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
-add_library(mycpplibtest SHARED shapes_lib1.cpp shapes.h)
+add_library(mycpplibtest shapes_lib1.cpp shapes.h)
 add_library(mycpplibtest::mycpplibtest ALIAS mycpplibtest)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
