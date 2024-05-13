@@ -9,7 +9,7 @@ project(mycpplibtest
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
-add_library(mycpplibtest shapes.cpp shapes.h)
+add_library(mycpplibtest SHARED shapes.cpp shapes.h)
 add_library(mycpplibtest::mycpplibtest ALIAS mycpplibtest)
 
 if(BUILD_SHARED_LIBS AND WIN32)
