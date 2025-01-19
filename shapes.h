@@ -1,4 +1,5 @@
 // C++ Interface Class
+//some updates
 
 
 #if !defined(MY_EXPORT)
@@ -11,10 +12,9 @@ class Shape {
 public:
     virtual double area() const = 0;
     virtual double perimeter() const = 0;
-    virtual ~Shape() {}
+    virtual ~Shape() {} //55555
 };
 
-// Concrete implementation of the interface
 class Circle : public Shape {
 private:
     double radius;
